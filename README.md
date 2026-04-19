@@ -1,3 +1,5 @@
 # Деплой приложения на сервер с использованием pm2
 
-Стартеркит проекта по автоматизации деплоя фронтенда и бэкенда при помощи pm2 (pm2 deploy)
+IP адрес 81.26.180.29
+Frontend https://deploy-mesto.nomorepartiessite.ru
+Backend https://api.deploy-mesto.nomorepartiessite.ru
