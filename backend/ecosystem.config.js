@@ -1,4 +1,4 @@
-require('dotenv').config({ path: '.env.deploy' });
+require('dotenv').config({ path: '../.env.deploy' });
 
 const {
   DEPLOY_USER, DEPLOY_HOST, DEPLOY_PATH, DEPLOY_REF = 'origin/master',
@@ -8,14 +8,9 @@ module.exports = {
   apps: [{
     name: 'backend',
     script: './dist/app.js',
-    cwd: './backend',   
-    env_production: {
-      NODE_ENV: 'production',
-      PORT: 3000,
-    },
   }],
 
-deploy: {
+  deploy: {
     production: {
       user: DEPLOY_USER,
       host: DEPLOY_HOST,
@@ -24,7 +19,7 @@ deploy: {
       path: DEPLOY_PATH,
       key: '~/.ssh/vm_key',
       'pre-deploy-local': `scp -i ~/.ssh/vm_key ./backend/.env ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/source/backend/.env`,
-      'post-deploy': 'cd backend && npm install && npm run build && cd ../frontend && npm install && NODE_OPTIONS=--openssl-legacy-provider npm run build && cd .. && npm install && pm2 reload ecosystem.config.js --env production',
+      'post-deploy': 'cd backend && npm ci && npm run build && pm2 reload backend/ecosystem.config.js --env production',
     },
- },
-} 
+  },
+};

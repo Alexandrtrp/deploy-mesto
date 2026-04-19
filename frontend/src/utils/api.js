@@ -138,7 +138,7 @@ class Api {
       .then(getResponse)
   }
   }
-  // Замените на адрес вашего бэкенда
+
   const api = new Api('https://api.deploy-mesto.nomorepartiessite.ru');
   
   export default api;
