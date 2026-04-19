@@ -23,7 +23,7 @@ module.exports = {
       repo: 'git@github.com:Alexandrtrp/deploy-mesto.git',
       path: DEPLOY_PATH,
       key: '~/.ssh/vm_key',
-      'pre-deploy': `scp ./backend/.env ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/source/backend/.env`,
+      'pre-deploy-local': `scp -i ~/.ssh/vm_key ./backend/.env ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/source/backend/.env`,
       'post-deploy': 'cd backend && npm install && npm run build && pm2 reload ecosystem.config.js --env production',
     },
   },
